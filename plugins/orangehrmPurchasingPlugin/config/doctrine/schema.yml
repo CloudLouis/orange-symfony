@@ -1,0 +1,686 @@
+PurchaseRequest:
+  connection: doctrine
+  tableName: ohrm_purchase_request
+  columns:
+    master_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    category_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    product_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    quantity:
+      type: float()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    price_range_bottom:
+      type: float()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    price_range_top:
+      type: float()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    budget_department:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    budget_category:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    approved_by:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    approval_date:
+      type: date(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    additional_detail:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    transaction_number:
+      type: string(225)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    status:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    rejection_reason:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+  relations:
+    Employee:
+      local: approved_by
+      foreign: emp_number
+      type: one
+    Budget:
+      local: budget_department
+      foreign: department
+      type: one
+    Budget_2:
+      class: Budget
+      local: budget_category
+      foreign: category
+      type: one
+    Category:
+      local: category_id
+      foreign: id
+      type: one
+    Product:
+      local: product_id
+      foreign: id
+      type: one
+    PurchaseOrder:
+      local: id
+      foreign: request_id
+      type: many
+
+Category:
+  connection: doctrine
+  tableName: ohrm_category
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    name:
+      type: string(225)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    code:
+      type: string(5)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+  relations:
+    Budget:
+      local: id
+      foreign: category
+      type: many
+    Product:
+      local: id
+      foreign: category_id
+      type: many
+    PurchaseRequest:
+      local: id
+      foreign: category_id
+      type: many
+    Services:
+      local: id
+      foreign: category_id
+      type: many
+    VendorToCategory:
+      local: id
+      foreign: category_id
+      type: many
+PurchaseOrder:
+  connection: doctrine
+  tableName: ohrm_purchase_order
+  columns:
+    request_master_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    request_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    vendor_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    product_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    price:
+      type: float()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    recipient_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    issued_date:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    deadline:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    requester_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    approved_by:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    description:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    quantity:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    transaction_number:
+      type: string(225)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    status:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
+      notnull: true
+      autoincrement: false
+    cancellation_reason:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+  relations:
+    Employee:
+      local: approved_by
+      foreign: emp_number
+      type: one
+    Product:
+      local: product_id
+      foreign: id
+      type: one
+    Recipient:
+      class: Employee
+      local: recipient_id
+      foreign: emp_number
+      type: one
+    Requester:
+      class: Employee
+      local: requester_id
+      foreign: emp_number
+      type: one
+    Vendor:
+      local: vendor_id
+      foreign: id
+      type: one
+    PurchaseRequest:
+      local: request_id
+      foreign: id
+      type: one
+    PurchaseRequestMaster:
+      local: request_master_id
+      foreign: id
+      type: one
+Vendor:
+  connection: doctrine
+  tableName: ohrm_vendor
+  columns:
+    name:
+      type: string(225)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    pic:
+      type: string(225)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    contact:
+      type: string(225)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    address:
+      type: string(225)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    account:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    npwp:
+      type: string(225)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    code:
+      type: string(6)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+  relations:
+    PurchaseOrder:
+      local: id
+      foreign: vendor_id
+      type: many
+    Quotations:
+      local: id
+      foreign: vendor_id
+      type: many
+    VendorToCategory:
+      local: id
+      foreign: vendor_id
+      type: many
+VendorToCategory:
+  connection: doctrine
+  tableName: ohrm_vendor_to_category
+  columns:
+    vendor_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    category_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+  relations:
+    Category:
+      local: category_id
+      foreign: id
+      type: one
+    Vendor:
+      local: vendor_id
+      foreign: id
+      type: one
+Product:
+  connection: doctrine
+  tableName: ohrm_product
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    name:
+      type: string(225)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    category_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    provider:
+      type: string(225)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    specifications:
+      type: string(225)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+  relations:
+    Category:
+      local: category_id
+      foreign: id
+      type: one
+    PurchaseOrder:
+      local: id
+      foreign: product_id
+      type: many
+    PurchaseRequest:
+      local: id
+      foreign: product_id
+      type: many
+    Quotations:
+      local: id
+      foreign: product_id
+      type: many
+Budget:
+  connection: doctrine
+  tableName: ohrm_budget
+  columns:
+    department:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    category:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    amount:
+      type: float()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    issued_date:
+      type: date(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    last_until:
+      type: date(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+  relations:
+    Subunit:
+      local: department
+      foreign: id
+      type: one
+    Category:
+      local: category
+      foreign: id
+      type: one
+    PurchaseRequest:
+      local: department
+      foreign: budget_department
+      type: many
+    PurchaseRequest_2:
+      class: OhrmPurchaseRequest
+      local: category
+      foreign: budget_category
+      type: many
+Quotations:
+  connection: doctrine
+  tableName: ohrm_quotations
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    vendor_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    product_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    price:
+      type: float()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    recipient_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    issued_date:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    deadline:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    requester_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    approved_by:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    description:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    quantity:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    transaction_number:
+      type: string(225)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    term_of_payment:
+      type: string(225)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+  relations:
+    User:
+      local: approved_by
+      foreign: id
+      type: one
+    Product:
+      local: product_id
+      foreign: id
+      type: one
+    User_3:
+      class: OhrmUser
+      local: recipient_id
+      foreign: id
+      type: one
+    User_4:
+      class: OhrmUser
+      local: requester_id
+      foreign: id
+      type: one
+    Vendor:
+      local: vendor_id
+      foreign: id
+      type: one
+
+PurchaseRequestMaster:
+  connection: doctrine
+  tableName: ohrm_purchase_request_master
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    employee_number:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    date:
+      type: date(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+  relations:
+    Employee:
+      local: employee_number
+      foreign: emp_number
+      type: one
+    PurchaseOrder:
+      local: id
+      foreign: request_master_id
+      type: many
