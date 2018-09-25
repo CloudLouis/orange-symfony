@@ -358,8 +358,29 @@ Vendor:
       primary: false
       notnull: true
       autoincrement: false
-    account:
+    bank:
+      type: string(225)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    account_number:
       type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    account_name:
+      type: string(225)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    bank_branch_address:
+      type: string(225)
       fixed: false
       unsigned: false
       primary: false

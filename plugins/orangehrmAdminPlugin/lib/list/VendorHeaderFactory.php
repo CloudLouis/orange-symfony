@@ -11,6 +11,9 @@ class VendorHeaderFactory extends ohrmListConfigurationFactory {
         $header6 = new ListHeader();
         $header7 = new ListHeader();
         $header8 = new ListHeader();
+        $header9 = new ListHeader();
+        $header10 = new ListHeader();
+        $header11 = new ListHeader();
 
         $header1->populateFromArray(array(
             'name' => 'Name',
@@ -48,13 +51,40 @@ class VendorHeaderFactory extends ohrmListConfigurationFactory {
                 'labelGetter' => 'getAddress',
                 'urlPattern' => 'javascript:'),
         ));
-        $header5->populateFromArray(array(
-            'name' => 'Account',
+        $header9->populateFromArray(array(
+            'name' => 'Bank',
             'elementType' => 'link',
             'filters' => array('I18nCellFilter' => array()
                               ),
             'elementProperty' => array(
-                'labelGetter' => 'getAccount',
+                'labelGetter' => 'getBank',
+                'urlPattern' => 'javascript:'),
+        ));
+        $header5->populateFromArray(array(
+            'name' => 'Account Name',
+            'elementType' => 'link',
+            'filters' => array('I18nCellFilter' => array()
+                              ),
+            'elementProperty' => array(
+                'labelGetter' => 'getAccountName',
+                'urlPattern' => 'javascript:'),
+        ));
+        $header10->populateFromArray(array(
+            'name' => 'Account Number',
+            'elementType' => 'link',
+            'filters' => array('I18nCellFilter' => array()
+                              ),
+            'elementProperty' => array(
+                'labelGetter' => 'getAccountNumber',
+                'urlPattern' => 'javascript:'),
+        ));
+        $header11->populateFromArray(array(
+            'name' => 'Bank Branch',
+            'elementType' => 'link',
+            'filters' => array('I18nCellFilter' => array()
+                              ),
+            'elementProperty' => array(
+                'labelGetter' => 'getBankBranchAddress',
                 'urlPattern' => 'javascript:'),
         ));
 
@@ -88,7 +118,7 @@ class VendorHeaderFactory extends ohrmListConfigurationFactory {
                 'urlPattern' => 'javascript:'),
         ));
 
-        $this->headers = array($header1, $header2, $header3, $header4, $header5, $header6, $header7, $header8);
+        $this->headers = array($header1, $header2, $header3, $header4, $header9, $header5, $header10, $header11, $header6, $header7, $header8);
     }
 
     public function getClassName() {

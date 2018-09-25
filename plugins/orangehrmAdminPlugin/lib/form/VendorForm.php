@@ -38,7 +38,10 @@ class VendorForm extends BaseForm {
             'name*' => new sfWidgetFormInputText(),
             'contact*' => new sfWidgetFormInputText(),
             'address*' => new sfWidgetFormInputText(),
-            'account*' => new sfWidgetFormInputText(),
+            'bank*' => new sfWidgetFormInputText(),
+            'account_number*' => new sfWidgetFormInputText(),
+            'account_name*' => new sfWidgetFormInputText(),
+            'bank_branch*' => new sfWidgetFormInputText(),
             'NPWP*' => new sfWidgetFormInputText(),
             'code*' => new sfWidgetFormInputText(), 
             'category*' => new sfWidgetFormChoice(array('multiple' => true,'expanded' => true,'choices' => $category)),
@@ -51,7 +54,10 @@ class VendorForm extends BaseForm {
             'name*' => new sfValidatorString(array('required' => true, 'max_length' => 100)),
             'contact*' => new sfValidatorString(array('required' => true, 'max_length' => 100)),
             'address*' => new sfValidatorString(array('required' => true, 'max_length' => 100)),
-            'account*' => new sfValidatorNumber(array('required' => true)),
+            'bank*' => new sfValidatorString(array('required' => true, 'max_length' => 100)),
+            'account_number*' => new sfValidatorNumber(array('required' => true)),
+            'account_name*' => new sfValidatorString(array('required' => true, 'max_length' => 100)),
+            'bank_branch*' => new sfValidatorString(array('required' => true, 'max_length' => 100)),
             'NPWP*' => new sfValidatorNumber(array('required' => true)),
             'code*' => new sfValidatorString(array('required' => true, 'max_length' => 100)),
             'category*' => new sfValidatorString(array('required' => false, 'max_length' => 100)),
@@ -98,7 +104,10 @@ class VendorForm extends BaseForm {
         $vendor->setPic($this->getValue('PIC*'));
         $vendor->setContact($this->getValue('contact*'));
         $vendor->setAddress($this->getValue('address*'));
-        $vendor->setAccount($this->getValue('account*'));
+        $vendor->setBank($this->getValue('bank*'));
+        $vendor->setAccountNumber($this->getValue('account_number*'));
+        $vendor->setAccountName($this->getValue('account_name*'));
+        $vendor->setBankBranchAddress($this->getValue('bank_branch*'));
         $vendor->setNpwp($this->getValue('NPWP*'));
         $vendor->setCode($this->getValue('code*'));
         $vendor->save();

@@ -11,7 +11,10 @@ Doctrine_Manager::getInstance()->bindComponent('OhrmVendor', 'doctrine');
  * @property string $pic
  * @property string $contact
  * @property string $address
- * @property integer $account
+ * @property string $bank
+ * @property integer $account_number
+ * @property string $account_name
+ * @property string $bank_branch_address
  * @property string $npwp
  * @property string $code
  * @property integer $id
@@ -23,7 +26,10 @@ Doctrine_Manager::getInstance()->bindComponent('OhrmVendor', 'doctrine');
  * @method string              getPic()                  Returns the current record's "pic" value
  * @method string              getContact()              Returns the current record's "contact" value
  * @method string              getAddress()              Returns the current record's "address" value
- * @method integer             getAccount()              Returns the current record's "account" value
+ * @method string              getBank()                 Returns the current record's "bank" value
+ * @method integer             getAccountNumber()        Returns the current record's "account_number" value
+ * @method string              getAccountName()          Returns the current record's "account_name" value
+ * @method string              getBankBranchAddress()    Returns the current record's "bank_branch_address" value
  * @method string              getNpwp()                 Returns the current record's "npwp" value
  * @method string              getCode()                 Returns the current record's "code" value
  * @method integer             getId()                   Returns the current record's "id" value
@@ -34,7 +40,10 @@ Doctrine_Manager::getInstance()->bindComponent('OhrmVendor', 'doctrine');
  * @method OhrmVendor          setPic()                  Sets the current record's "pic" value
  * @method OhrmVendor          setContact()              Sets the current record's "contact" value
  * @method OhrmVendor          setAddress()              Sets the current record's "address" value
- * @method OhrmVendor          setAccount()              Sets the current record's "account" value
+ * @method OhrmVendor          setBank()                 Sets the current record's "bank" value
+ * @method OhrmVendor          setAccountNumber()        Sets the current record's "account_number" value
+ * @method OhrmVendor          setAccountName()          Sets the current record's "account_name" value
+ * @method OhrmVendor          setBankBranchAddress()    Sets the current record's "bank_branch_address" value
  * @method OhrmVendor          setNpwp()                 Sets the current record's "npwp" value
  * @method OhrmVendor          setCode()                 Sets the current record's "code" value
  * @method OhrmVendor          setId()                   Sets the current record's "id" value
@@ -88,7 +97,16 @@ abstract class BaseOhrmVendor extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 225,
              ));
-        $this->hasColumn('account', 'integer', 4, array(
+        $this->hasColumn('bank', 'string', 225, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 225,
+             ));
+        $this->hasColumn('account_number', 'integer', 4, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
@@ -96,6 +114,24 @@ abstract class BaseOhrmVendor extends sfDoctrineRecord
              'notnull' => true,
              'autoincrement' => false,
              'length' => 4,
+             ));
+        $this->hasColumn('account_name', 'string', 225, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 225,
+             ));
+        $this->hasColumn('bank_branch_address', 'string', 225, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 225,
              ));
         $this->hasColumn('npwp', 'string', 225, array(
              'type' => 'string',
